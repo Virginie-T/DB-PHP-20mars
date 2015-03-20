@@ -23,7 +23,7 @@
         function test_getName()
         {
             //Arrange
-            $name = "italian";
+            $name = "Vavi Trub";
             $id = null;
             $stylist_id = 1;
             $test_client = new Client($name, $id, $stylist_id);
@@ -38,12 +38,12 @@
         function test_getId()
         {
             //Arrange
-            $name = "mexican";
+            $name = "Vavi Trub";
             $id = null;
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
-            $name = "Taco Bell";
+            $name = "Ninouche Sist";
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($name, $id, $stylist_id);
             $test_client->save();
@@ -58,13 +58,13 @@
         function test_save()
         {
             //Arrange
-            $name = "french";
+            $name = "Stylist1";
             $id = null;
 
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
-            $name = "olive garden";
+            $name = "Ninouche Sist";
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($name, $id, $stylist_id);
 
@@ -79,11 +79,11 @@
         function test_getAll()
         {
             //Arrange
-            $name = "Burger king";
+            $name = "La folle";
             $id = null;
-            $name2 = "Mcdonalds";
+            $name2 = "Le sage";
 
-            $name = "American";
+            $name = "Stylist2";
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
@@ -104,11 +104,11 @@
         function test_deleteAll()
         {
             //Arrange
-            $name = "Burger king";
+            $name = "Chick Lebon";
             $id = null;
-            $name2 = "Mcdonalds";
+            $name2 = "Anaïs Magdad";
 
-            $name = "American";
+            $name = "Stylist3";
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
@@ -130,46 +130,45 @@
         function testUpdateName()
         {
             //Arrange
-            $name = "Armenian";
+            $name = "Stylist4";
             $id = null;
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
             $stylist_id = $test_stylist->getId();
-            $name = "fries";
+            $name = "Regina Jemelapete";
 
             $test_client = new Client($name, $id, $stylist_id);
             $test_client->save();
 
-            $new_name = "pizza";
+            $new_name = "Regina Jelaclape";
 
             //Act
             $test_client->update($new_name);
 
             //Assert
-            $this->assertEquals("pizza", $test_client->getName());
+            $this->assertEquals("Regina Jelaclape", $test_client->getName());
         }
 
         function testDeleteSingle()
         {
             //Arrange
-            $name = "Polish";
+            $name = "Stylist5";
             $id = null;
             $test_stylist = new Stylist($name, $id);
             $test_stylist->save();
 
-            $name = "Bratwurst Hut";
+            $name = "Client régulier";
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($name, $id, $stylist_id);
             $test_client->save();
 
-            $name2 = "Sausage Hut";
+            $name2 = "Juda";
             $test_client2 = new Client($name2, $id, $stylist_id);
             $test_client2->save();
 
             //Act
             $test_client->deleteSingle();
-            var_dump(Client::getAll());
 
             //Assert
             $this->assertEquals([$test_client2], Client::getAll());

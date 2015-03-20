@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+	<title>Stylists</title>
+</head>
+<body>
+
+	<div class='container'>
+		<h1>Welcome to the Hair Salon application</h1>
+
+		<form action='/add_stylist' method='post'>
+			<label for='name'>Enter the stylist name</label>
+			<input id='name' name='name' type='text'>
+
+			<button type='submit' class='btn btn-success'>Add</button>
+		</form>
+
+		{% if stylists is not empty %}
+		<h2>Here are all the Stylist listed :</h2>
+		<ul>
+		{% for stylist in stylists %}
+			<li>{{ stylist.getName }}</li>
+		{% endfor %}
+
+		{% else %}
+
+		<p>Sorry, we have no stylist listed yet ...</p>
+
+		{% endif %}
+
+	</div>
+
+</body>
+</html>
