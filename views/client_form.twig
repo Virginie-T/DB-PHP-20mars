@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+	<title>Client form</title>
+</head>
+<body>
+
+	<div class='container'>
+
+	<h3>That is all the clients for {{ stylist.getName() }} :</h3>
+
+	<form action='/add_client' method='post'>
+		<input id="stylist_id" name='stylist_id' value="{{ stylist.getId() }}" type='hidden'>
+		<label for="name">Enter the name of a new client :</label>
+		<input id='name' name='name' type='text'>
+
+		<button type='submit'>Add</button>
+	</form>
+
+	{%  if clients is not empty %}
+
+	<h2>Here are all the clients listed for {{ stylist.getName }} :</h2>
+		<ul>
+		{% for client in clients %}
+			<li>{{ client.getName }}</li>
+		{% endfor %}
+
+	{% else %}
+
+	<p>Sorry we don't have any client listed for {{ stylist.getName() }} yet ...</p>
+
+	{% endif %}
+
+		<form action='/delete_all_the_clients' method='post'>
+
+			<input id="stylist_id" name="stylist_id" value="{{ stylist.getId() }}" type='hidden'>
+
+			<button type='submit'>Delete them all</button>
+		</form>
+
+	</div>
+
+	        <a href="/"><button type="submit" class="btn btn-info">Return</button></a>
+
+
+</body>
+</html>

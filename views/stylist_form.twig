@@ -19,7 +19,7 @@
 		<h2>Here are all the Stylist listed :</h2>
 		<ul>
 		{% for stylist in stylists %}
-			<li>{{ stylist.getName }}</li>
+			<li><a href='/stylist_form/{{stylist.getId()}}'>{{ stylist.getName }}</a></li>
 		{% endfor %}
 
 		{% else %}
@@ -27,6 +27,10 @@
 		<p>Sorry, we have no stylist listed yet ...</p>
 
 		{% endif %}
+
+		<form action='/delete_all_the_stylists' method='post'>
+			<button type='submit'>Delete them all</button>
+		</form>
 
 	</div>
 
