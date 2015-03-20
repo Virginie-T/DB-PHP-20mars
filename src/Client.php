@@ -1,6 +1,6 @@
 <?php
 
-    class Cient {
+    class Client {
 
             private $name;
             private $id;
@@ -46,7 +46,7 @@
 
             function save()
             {
-                $statement = $GLOBALS['DB']->query("INSERT INTO clients (name, stylist_id) VALUES ('{$this->getName()}', {$this->getStylistId) RETURNING id;");
+                $statement = $GLOBALS['DB']->query("INSERT INTO clients (name, stylist_id) VALUES ('{$this->getName()}', {$this->getStylistId()}) RETURNING id;");
                 $result = $statement->fetch(PDO::FETCH_ASSOC);
                 $this->setId($result['id']);
             }

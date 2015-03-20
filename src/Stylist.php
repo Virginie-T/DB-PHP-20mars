@@ -2,8 +2,8 @@
 
 	class Stylist {
 
-		private name;
-		private id;
+		private $name;
+		private $id;
 
 		function __construct($name, $id) {
 			$this->name = $name;
@@ -94,7 +94,7 @@
             $GLOBALS['DB']->exec("DELETE FROM stylist WHERE id = {$this->getId()};");
             $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
         }
-    }
+    
 
 
 	}
