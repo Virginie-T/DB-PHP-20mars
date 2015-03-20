@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <title>Edit Client</title>
+    </head>
+    <body>
+        <div class="container">
+
+            <h1>Update the {{ client.getName }} :</h1>
+
+            <form action="/stylist_form/{{ stylist.getId }}/client/edit_client" method="post">
+                <input name="_method" type="hidden" value="patch">
+                <input value='{{ client.getId }}' name="client_id" id="client_id" type="hidden">
+
+                <label for="new_name">Rename your client</label>
+                <input id="new_name" name="new_name" type="text">
+
+                <button type="submit">Update</button>
+            </form>
+
+        </div>
+    </body>
+</html>

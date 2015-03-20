@@ -24,6 +24,21 @@
 				<ul>
 				{% for client in clients %}
 					<li>{{ client.getName }}</li>
+					   <form action="/stylist_form/{{ stylist.getId }}/deleteSingle" method="post">
+                           
+                            <input value='{{ client.getId }}' name="client_id" id="client_id" type="hidden">
+                            <input name="_method" type="hidden" value="delete">
+                            <button type='submit' class="btn btn-danger">Delete</button>
+                        </form>
+                        
+ 						<form action="/stylist_form/{{ stylist.getId }}/client/edit" method="post">
+                           
+                            <input value='{{ client.getId }}' name="client_id" id="client_id" type="hidden">
+                            <button type='submit' class="btn btn-danger">Edit</button>
+                        </form>
+
+                           
+
 				{% endfor %}
 				</ul>
 

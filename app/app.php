@@ -58,6 +58,53 @@
 		return $app['twig']->render('client_form.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
 	});
 
+	$app->delete('/stylist_form/{id}/deleteSingle', function($id) use ($app) {
+		$client_id = $_POST['client_id'];
+		$stylist = Stylist::find($id);
+
+		$stylist_clients = $stylist->getClients();
+		$that_client = null;
+		foreach ($stylist_clients as $client) {
+			if ($client->getId() == $client_id) {
+				$that_client = $client;
+			}
+		}	
+		$that_client->deleteSingle();
+		return $app['twig']->render('client_form.twig', array('client_id' => $client_id, 'stylist' => $stylist, 'clients' => $stylist->getClients()));	
+	});
+
+	$app->post("/stylist_form/{id}/client/edit", function($id) use ($app) {
+		$stylist = Stylist::find($id);
+		$client_id = $_POST['client_id'];
+
+		$stylist_clients = $stylist->getClients();
+		$that_client = null;
+		foreach ($stylist_clients as $client) {
+			if ($client->getId() == $client_id) {
+				$that_client = $client;
+			}
+		}	
+
+        return $app['twig']->render('edit_client.twig', array('stylist' => $stylist, 'client_id' => $client_id, 'client' => $that_client));
+    });
+
+    $app->patch("/stylist_form/{id}/client/edit_client", function($id) use ($app) {
+		$stylist = Stylist::find($id);
+		$new_name = $_POST['new_name'];
+		$client_id = $_POST['client_id'];
+
+		$stylist_clients = $stylist->getClients();
+		$that_client = null;
+		foreach ($stylist_clients as $client) {
+			if ($client->getId() == $client_id) {
+				$that_client = $client;
+			}
+		}	
+		$that_client->update($new_name);
+		return $app['twig']->render('client_form.twig', array('client_id' => $client_id, 'stylist' => $stylist, 'clients' => $stylist->getClients()));	
+	});
+
+
     return $app;
 
 ?>
