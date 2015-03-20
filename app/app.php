@@ -49,12 +49,13 @@
 		return $app['twig']->render('client_form.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
 	});
 
-	$app->post('/delete_all_the_clients', function() use ($app) {
-		$stylist_id = $_POST['stylist_id'];
-		$stylist = Stylist::find($stylist_id);
-		Client::deleteAll();
+	$app->delete('/stylist_form/{id}/delete_all_clients', function($id) use ($app) {
+		$stylist = Stylist::find($id);
+		$clients = $stylist->getClients();
+		$single_client = $clients[0];
+		$single_client->deleteClients();
 
-		return $app['twig']->render('client_form.twig', array('stylist' => $stylist, 'clients' => Client::getAll()));
+		return $app['twig']->render('client_form.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
 	});
 
     return $app;
