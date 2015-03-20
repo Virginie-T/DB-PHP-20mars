@@ -105,14 +105,6 @@
 	});
 
 
-
-
-
-
-
-
-
-
 	$app->delete('/stylist_form/{id}/deleteSingleStylist', function($id) use ($app) {
 		$stylist = Stylist::find($id);
 		$stylist->delete();
@@ -122,33 +114,16 @@
 
 	$app->post("/stylist_form/{id}/edit", function($id) use ($app) {
 		$stylist = Stylist::find($id);
-		$client_id = $_POST['client_id'];
 
-		$stylist_clients = $stylist->getClients();
-		$that_client = null;
-		foreach ($stylist_clients as $client) {
-			if ($client->getId() == $client_id) {
-				$that_client = $client;
-			}
-		}	
-
-        return $app['twig']->render('edit_client.twig', array('stylist' => $stylist, 'client_id' => $client_id, 'client' => $that_client));
+        return $app['twig']->render('edit_stylist.twig', array('stylist' => $stylist));
     });
 
-    $app->patch("/stylist_form/{id}/client/edit_client", function($id) use ($app) {
+    $app->patch("/stylist_form/{id}/stylist/edit_stylist", function($id) use ($app) {
 		$stylist = Stylist::find($id);
 		$new_name = $_POST['new_name'];
-		$client_id = $_POST['client_id'];
-
-		$stylist_clients = $stylist->getClients();
-		$that_client = null;
-		foreach ($stylist_clients as $client) {
-			if ($client->getId() == $client_id) {
-				$that_client = $client;
-			}
-		}	
-		$that_client->update($new_name);
-		return $app['twig']->render('client_form.twig', array('client_id' => $client_id, 'stylist' => $stylist, 'clients' => $stylist->getClients()));	
+		$stylist->update($new_name);
+		
+		return $app['twig']->render('stylist_form.twig', array('stylists' => Stylist::getAll()));	
 	});
 
     return $app;
