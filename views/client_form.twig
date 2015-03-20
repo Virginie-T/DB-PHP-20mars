@@ -8,7 +8,7 @@
 
 	<div class='container'>
 
-		<h3>That is all the clients for {{ stylist.getName() }} :</h3>
+		<h2>That is all the clients for {{ stylist.getName() }} :</h2>
 
 		<form action='/add_client' method='post'>
 			<input id="stylist_id" name='stylist_id' value="{{ stylist.getId() }}" type='hidden'>
@@ -34,7 +34,7 @@
  						<form action="/stylist_form/{{ stylist.getId }}/client/edit" method="post">
                            
                             <input value='{{ client.getId }}' name="client_id" id="client_id" type="hidden">
-                            <button type='submit' class="btn btn-danger">Edit</button>
+                            <button type='submit' class="btn btn-warning">Edit</button>
                         </form>
 
                            

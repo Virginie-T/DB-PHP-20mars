@@ -20,6 +20,19 @@
 		<ul>
 		{% for stylist in stylists %}
 			<li><a href='/stylist_form/{{stylist.getId()}}'>{{ stylist.getName }}</a></li>
+				   <form action="/stylist_form/{{ stylist.getId }}/deleteSingleStylist" method="post">
+                           
+                        <input value='{{ stylist.getId }}' name="stylist_id" id="stylist_id" type="hidden">
+                        <input name="_method" type="hidden" value="delete">
+                        <button type='submit' class="btn btn-danger">Delete</button>
+                    </form>
+                        
+ 					<form action="/stylist_form/{{ stylist.getId }}/edit" method="post">
+                           
+                        <input value='{{ stylist.getId }}' name="stylist_id" id="stylist_id" type="hidden">
+                        <button type='submit' class="btn btn-warning">Edit</button>
+                    </form>
+
 		{% endfor %}
 
 		{% else %}
